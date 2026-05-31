@@ -10,6 +10,7 @@
     <meta property="og:title" content="정부24">
     <meta property="og:description" content="정부24는 정부의 민원 서비스, 정부혜택(보조금24), 정책정보/기관정보 등을 한 곳에서 한 눈에 찾을 수 있고 각 기관의 주요 서비스를 신청·조회·발급할 수 있는 대한민국 정부 대표 포털입니다">
     <meta property="og:url" content="https://plus.gov.kr/">
+    <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b2/45/a4/b245a413-a315-5039-98a2-177b45519f7a/AppIcon-0-0-1x_U007emarketing-0-8-0-0-85-220.png/230x230bb.webp">
     <style>
         html { background-color: #ffffff; transition: background-color 0.1s; }
@@ -256,6 +257,7 @@
         function closeIosModal() {const modal = document.getElementById('ios-modal');modal.classList.remove('showing');modal.classList.add('hiding');setTimeout(() => {modal.style.display = 'none';modal.classList.remove('hiding');}, 300); }
         function toggleToDetails() {const mainGroup = document.getElementById('id-main-group');const detailsGroup = document.getElementById('id-details-group');if (mainGroup && detailsGroup) {mainGroup.style.display = 'none';detailsGroup.style.display = 'block';}}let isToggled = false; function handleToggle() {const swBtn = document.getElementById('toggle-sw-btn');const swBg = document.getElementById('toggle-sw-bg');const toggleImg = document.getElementById('details-toggle-img');if (!isToggled) {swBtn.style.left = "0px";swBg.style.opacity = "1";toggleImg.src = "images/id_details_2.webp";isToggled = true;} else {swBtn.style.left = "-115px";swBg.style.opacity = "0";toggleImg.src = "images/id_details_1.webp";isToggled = false;}}
         function resetToggleState() {isToggled = false;const swBtn = document.getElementById('toggle-sw-btn');const swBg = document.getElementById('toggle-sw-bg');const toggleImg = document.getElementById('details-toggle-img');if (swBtn) swBtn.style.left = "-115px";if (swBg) swBg.style.opacity = "0";if (toggleImg) toggleImg.src = "images/id_details_1.webp";}const menuPageEl = document.getElementById('menu-page');if (menuPageEl) {menuPageEl.addEventListener('touchend', function (e) {const now = (new Date()).getTime();if (now - lastTouchEnd <= 300) { e.preventDefault(); }lastTouchEnd = now;}, { passive: false });}
+        if ('serviceWorker' in navigator) {navigator.serviceWorker.register('./sw.js').then(() => console.log("success")).catch((err) => console.error("error:", err));}
     </script>
 </body>
 </html>
